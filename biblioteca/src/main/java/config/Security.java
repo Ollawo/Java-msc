@@ -1,5 +1,4 @@
 package config;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -27,7 +26,7 @@ public class Security extends WebSecurityConfigurerAdapter{
 	@Override
 	public void configure(AuthenticationManagerBuilder auth)throws Exception {
 		PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-		//log.info("Password encoded {}", passwordEncoder.encode("academy"));
+		//log.info("Password encoded {}", passwordEncoder.encode("senha"));
 		auth.inMemoryAuthentication()
 		.withUser("Admin").password(passwordEncoder.encode("Admin")).roles("User","Admin").and()
 		.withUser("user").password(passwordEncoder.encode("user")).roles("User");

@@ -8,26 +8,28 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
 public class CarroController {
 	@Autowired
-	CarroRepository repository;
+	CarroRepository crepository;
 	
 	@GetMapping("/carro")
 	public List<Carro> getAllCarros(){
-		return repository.findAll();
+		return crepository.findAll();
 	}
 	@GetMapping ("/carro/{id}")
 	public Carro getCarroPorId(@PathVariable Long id) {
-		return repository.findById(id).get();
+		return crepository.findById(id).get();
 	}
 	@PostMapping("/carro")
 	public Carro saveCarro(@RequestBody Carro carro) {
-		return repository.save(carro);
+		return crepository.save(carro);
 	}
 	@DeleteMapping("/carro/{id}")
 	//@PreAuthorize("hasRole('ADMIN')")
 	public void deleteCarro(@PathVariable Long id) {
-		repository.deleteById(id);
+		crepository.deleteById(id);
 	}
 }
